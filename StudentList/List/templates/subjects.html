@@ -1,0 +1,50 @@
+{% extends "index.html" %}
+{% block title %}
+    Subjects
+{% endblock title %}
+{% block content %}
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i> Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Subjects</li>
+    </ol>
+</nav>
+<div class="container">
+    <div class="wrapper text-center">
+        <h2 class="">Fanlar Royhati</h2>
+    </div>
+    <div class="row mt-5" style="margin-right: 15px;">
+        <div class="col-md-10 m-auto">
+            <table class="table table-hover table-borderless">
+                <thead class="border-bottom border-primary">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">To'lov</th>
+                        <th scope="col">O'quvchilar</th>
+                        <th scope="col">O'qituvchilar</th>
+                        <th scope="col">To'langan To'lov</th>
+                    </tr>
+                </thead>
+                <tbody class="">
+                    {% for i in sub %}
+                        <tr class="border-bottom">
+                            <th scope="row"> {{ forloop.counter }} </th>
+                            <td><a href="{% url 'List:Teachers' sub_id=i.id %}" class="text-dark"> {{ i.name }} </a> </td>
+                            <td>{{ i.payment }} so'm</td>
+                            <td>{{ i.get_total }} kishi</td>
+                            <td>{{ i.get_total_teacher }} kishi</td>
+                            <td>{{ i.get_total_benifit }} so'm</td>
+                            <td class="btn-group btn-group-sm"><a href="{% url 'List:Update_sub' pk=i.pk %}" class="btn btn-primary">Edit</a><a href="{% url 'List:Delete_Sub' pk=i.pk %}" class="btn btn-danger">Delete</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

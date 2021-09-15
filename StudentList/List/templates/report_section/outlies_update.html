@@ -1,0 +1,27 @@
+{% extends "index.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+    Update_Outlay
+{% endblock title %}
+{% block content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item" ><a href="{% url 'List:Home' %}">Home</a></li>
+        <li class="breadcrumb-item" ><a href="{% url 'List:Report' %}">Report Section</a></li>
+        <li class="breadcrumb-item" ><a href="{% url 'List:Outlay' %}">Total Outlay</a></li>
+        <li class="breadcrumb-item active" aria-current="page"> Update </li>
+    </ol>
+</nav>
+    <div class="row" style="margin-right: 15px;">
+        <div class="col-md-5 m-auto">
+            <form action="" method="post" class="uniForm">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn-block btn btn-primary">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,58 @@
+{% extends "index.html" %}
+{% block title %}
+    SearchStudentList
+{% endblock title %}
+{% block content %}
+<nav aria-label="breadcrumb" class="fixed-top">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item" ><a href="{% url 'List:Home' %}">Home</a></li>
+        <li class="breadcrumb-item" ><a href="{% url 'List:Report' %}">Umumiy Hisobot</a></li>
+        <li class="breadcrumb-item" ><a href="{% url 'List:StudentList' %}">O'quvchilar Royhati</a></li>
+        <li class="breadcrumb-item active" aria-current="page">SearchStudentList</li>
+    </ol>
+</nav>
+<div class="wrapper my-5">
+    <h2 class="text-center"><span class="border-bottom border-dark"> StudentList </span></h2>
+</div> 
+<div class="col-md-5 m-auto">
+    <form action="{% url 'List:SearchS' %}" class="my-4" method="get">
+        <input class="form-control" type="search" name="S" id="" placeholder="Search Student">
+    </form>
+</div>
+<div class="row" style="margin-right: 15px;">
+    <div class="col-md-9 m-auto">
+        <table class="table table-hover table-borderless">
+            <thead class="border-bottom border-primary">
+                <tr>
+                    <th>#</th>
+                    <th>Ismi</th>
+                    <th>Familyasi</th>
+                    <th>O'rganadigan fani</th>
+                    <th>O'qituvchisi</th>
+                    <th>Telefon Raqami</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody> 
+                {% for i in object_list %}
+                    <tr class="border-bottom">
+                        <th>{{ forloop.counter }}</th>
+                        <td> {{i.first_name}} </td>
+                        <td> {{i.last_name}} </td>
+                        <td> {{i.study_subject}} </td>
+                        <td> {{i.teacher}}</td>
+                        <td> (+998) {{i.phone_number}} </td>
+                        <td class="btn-group-sm btn-group"> <a href="{% url 'List:Update_stu' pk=i.pk %}" class="btn btn-primary">Edit</a><a href="{% url 'List:Delete_Stu' pk=i.pk %}" class="btn btn-danger">Delete</a> </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3"></td>
+                        <td colspan="4">Afsuski Bu ismdagi Talaba yoq :( </td>
+                    </tr>    
+                {% endfor %}
+            </tbody>
+        </table>                      
+    </div>
+</div>    
+
+{% endblock content %}

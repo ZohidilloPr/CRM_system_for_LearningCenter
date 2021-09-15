@@ -1,0 +1,79 @@
+{% extends "index.html" %}
+{% block title %}
+    StudentList
+{% endblock title %}
+{% block content %}
+<nav aria-label="breadcrumb" class="fixed-top">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item" ><a href="{% url 'List:Home' %}">Home</a></li>
+        <li class="breadcrumb-item" ><a href="{% url 'List:Report' %}">Umumiy Hisobot</a></li>
+        <li class="breadcrumb-item active" aria-current="page">O'quvchilar Ro'yhati</li>
+    </ol>
+</nav>
+<div class="text-right fixed-top mt-5">
+    <a href="{% url 'List:Stu_form' %}" class="mt-2 btn btn-primary btn-sm mr-2">add Student</a>
+</div>
+<div class="wrapper my-5">
+    <h2 class="text-center"><span class="border-bottom border-dark"> StudentList </span></h2>
+</div> 
+<div class="col-md-5 m-auto">
+    <form action="{% url 'List:SearchS' %}" class="my-4" method="get">
+        <input class="form-control" type="search" name="S" id="" placeholder="Search Student">
+    </form>
+</div>
+<div class="row" style="margin-right: 15px;">
+    <div class="col-md-9 m-auto">
+        <table class="table table-hover table-borderless">
+            <thead class="border-bottom border-primary">
+                <tr>
+                    <th>#</th>
+                    <th>Ismi</th>
+                    <th>Familyasi</th>
+                    <th>O'rganadigan fani</th>
+                    <th>O'qituvchisi</th>
+                    <th>Telefon Raqami</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody> 
+                {% for i in object_list %}
+                    <tr class="border-bottom">
+                        <th>{{ forloop.counter }}</th>
+                        <td> {{i.first_name}} </td>
+                        <td> {{i.last_name}} </td>
+                        <td> {{i.study_subject}} </td>
+                        <td> {{i.teacher}}</td>
+                        <td> (+998) {{i.phone_number}} </td>
+                        <td class="btn-group-sm btn-group"> <a href="{% url 'List:Update_stu' pk=i.pk %}" class="btn btn-primary">Edit</a><a href="{% url 'List:Delete_Stu' pk=i.pk %}" class="btn btn-danger">Delete</a> </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot class="border-bottom border-primary">
+                {% for i in object_list %}
+                    {% if forloop.counter == 1 %}
+                        {% if i.total_student %}
+                            <tr>
+                                <th colspan="4">Umumiy O'quvchilar soni</th>
+                                <td colspan="3"> {{ i.total_student }} kishi</td>
+                            </tr>
+                            {% endif %}                          
+                        {% endif %}                  
+                    {% endfor %}
+            </tfoot>
+        </table>                      
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item"><a href="?page={{page_obj.previous_page_number}}" class="page-link" tabindex="-1" aria-disabled="true">Previous</a></li>
+                {% endif %}
+                <li class="page-item"><a href="?page=1" class="page-link">First</a></li>
+                <li class="page-item"><a href="?page={{ page_obj.number }}" class="page-link">{{ page_obj.number }}</a></li>
+                {% if page_obj.has_next %}
+                    <li class="page-item"><a href="?page={{page_obj.next_page_number}}" class="page-link">Next</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</div>    
+
+{% endblock content %}

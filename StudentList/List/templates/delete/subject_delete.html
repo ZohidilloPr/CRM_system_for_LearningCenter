@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+    Delete_form
+{% endblock title %}
+{% block content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item" ><a href="{% url 'List:Home' %}">Home</a></li>
+        <li class="breadcrumb-item" ><a href="{% url 'List:Subjects' %}">Subjects</a></li>
+        <li class="breadcrumb-item active" aria-current="page"> Delete </li>
+    </ol>
+</nav>
+    <div class="row" style="margin-right: 15px;">
+        <div class="col-md-7 m-auto">
+            <form action="" method="post" class="uniForm">
+                {% csrf_token %}
+                <h2>Delete Section</h2>
+                <hr>
+                <h4> <mark class="text-warning"><b> Warning </b></mark> Ushbu <b>"{{ object }}"</b>ni O'chirsangiz qata tiklash imkoni yoq!</h4>
+                <small><b>"{{ object }}"</b>ga bog'langan hamma malumotlar o'chibketadi!</small>
+                <hr>
+                <p> <b>"{{ object }}"</b>ni Rostan ham O'chirishni Hoxlaysizmi</p>
+                
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn-block btn btn-outline-danger">Ha Albatta</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock content %}

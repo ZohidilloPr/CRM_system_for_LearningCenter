@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+{% block title %}
+    Home
+{% endblock title %}
+{% block content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Home</li>
+        <li class="breadcrumb-item"><a class="text-info" href="{% url 'List:Report' %}"><i class="fas fa-chart-line"></i> Umumiy Hisobot O'tish <i>→</i> </a></li>
+    </ol>
+</nav>
+<div class="wrapper mt-5">
+    <h2 class="text-center">Learning Center</h2>
+</div>
+    <div class="row mt-5" style="margin-right: 15px;">
+        <div class="col-md-6 m-auto">
+            <table class="table table-borderless">
+                <tbody class="border-bottom border-info">
+                    <tr>
+                        <td class="text-left"><a class="text-dark" href="{% url 'List:Subjects' %}"><i class="fas fa-book"></i> Fanlar</a></td>
+                        <td class="text-center ml-5"><a class="text-dark" href="{% url 'List:Workers' %}"><i class="fas fa-users"></i> Hodimlar</a></td>
+                        <td class="text-right"><a class="text-info" href="{% url 'List:Register' %}"><i class="fas fa-plus-circle"></i> Ro'yhatga Olish Bo'limi</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content %}

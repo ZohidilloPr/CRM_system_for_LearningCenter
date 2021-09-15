@@ -1,0 +1,64 @@
+{% extends "index.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+    Report_Home
+{% endblock title %}
+{% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item" ><a href="{% url 'List:Home' %}"><i class="fas fa-home"></i> Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Umumiy Hisobot Bo'limi</li>
+        </ol>
+    </nav>
+    <header class="text-center">
+        <div class="banner">
+            <h2 class="my-5 font-weight-light"><span class="border-bottom border-dark">Learning Center</span></h2>
+        </div>
+    </header>
+    <div class="row" style="margin-right: 15px;">
+        <div class="col-md-6 m-auto">
+            <table class="table table-borderless text-center">
+                <thead class="border-bottom border-info ">
+                    <tr>
+                        <th><i class="fas fa-book"></i> Fanlar</th>
+                        <th><a href="{% url 'List:Workers' %}"><i class="fas fa-users"></i> O'qituvchilar soni</a></th>
+                        <th><a href="{% url 'List:StudentList' %}"><i class="fas fa-user-graduate"></i> O'quvchilar soni</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> {{ c_sub }} ta </td>
+                        <td> {{ c_tea }} kishi </td>
+                        <td> {{ c_stu }} kishi </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-8 m-auto">
+            <table class="table mt-5 table-borderless">
+                <thead class="border-bottom border-primary">
+                    <tr>
+                        <th>Umumiy Tushum</th>
+                        <th><a href="{% url 'List:Workers' %}">O'qituvchilar uchun</a></th>
+                        <th> <a href="{% url 'List:Outlay' %}">Chiqimlar</a> </th>
+                        <th>Qolgan summa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in stu %}
+                        {% if forloop.counter == 1 %}
+                            {% if i.total_paied_payment or i.total_for_teachers_payment %}
+                            <td> {{ i.total_paied_payment }} so'm </td>
+                            <td> {{ i.total_for_teachers_payment }} so'm </td>
+                            <td> {{ i.total_outlay }} so'm </td>
+                            <td> {{ i.pureBenifit }} so'm </td>
+                            {% endif %}
+                        {% endif %}
+                        {{ break }}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock content %}

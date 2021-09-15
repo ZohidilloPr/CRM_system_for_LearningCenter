@@ -1,0 +1,53 @@
+from django.urls import path
+from .views import (
+    Home,
+    Subjects,
+    Teachers,
+    Students,
+    Register,
+    All_of_Them,
+    WorkerList,
+    All_StudentList,
+    Total_Outlies,
+    SubjectCreate,
+    TeacherCreate,
+    StudentCreate,
+    SubjectUpdate,
+    TeacherUpdate,
+    StudentUpdate,
+    Total_OutliesUpdate,
+    SubjectDelete,
+    TeacherDelete,
+    StudentDelete,
+    Total_OutlayDelete,
+    SearchWorkerList,
+    SearchStudentList,
+)
+
+app_name = 'List'
+
+urlpatterns = [
+    path('', Home, name='Home'),
+    path('subjects/', Subjects, name='Subjects'),
+    path('register/', Register, name='Register'),
+    path('report/', All_of_Them, name='Report'),
+    path('students/<tea_id>/', Students, name='Students'),
+    path('teachers/<sub_id>/', Teachers, name='Teachers'),
+    path('outlay/', Total_Outlies.as_view(), name='Outlay'),
+    path('workers/', WorkerList.as_view(), name='Workers'),
+    path('all_students/', All_StudentList.as_view(), name='StudentList'),
+    path('subject_form/', SubjectCreate.as_view(), name='Sub_form'),
+    path('teacher_form/', TeacherCreate.as_view(), name='Tea_form'),
+    path('student_form/', StudentCreate.as_view(), name='Stu_form'),
+    path('subject_update/<pk>/', SubjectUpdate.as_view(), name='Update_sub'),
+    path('teacher_update/<pk>/', TeacherUpdate.as_view(), name='Update_tea'),
+    path('student_update/<pk>/', StudentUpdate.as_view(), name='Update_stu'),
+    path('outlay_update/<pk>/', Total_OutliesUpdate.as_view(), name='Update_Outlay'),
+    path('subject_delete/<pk>/', SubjectDelete.as_view(), name='Delete_Sub'),
+    path('teacher_delete/<pk>/', TeacherDelete.as_view(), name='Delete_Tea'),
+    path('student_delete/<pk>/', StudentDelete.as_view(), name='Delete_Stu'),
+    path('outlay_delete/<pk>/', Total_OutlayDelete.as_view(), name='Delete_Outlay'),
+    path('Wresults/', SearchWorkerList.as_view(), name='SearchW'),
+    path('Sresults/', SearchStudentList.as_view(), name='SearchS'),
+
+]

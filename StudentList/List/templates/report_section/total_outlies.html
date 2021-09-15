@@ -1,0 +1,63 @@
+{% extends "index.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+    Report_Outlay
+{% endblock title %}
+{% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item" ><a href="{% url 'List:Home' %}">Home</a></li>
+            <li class="breadcrumb-item" ><a href="{% url 'List:Report' %}">Hisobot Bo'limi</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Umumiy Harajat</li>
+        </ol>
+    </nav>
+    <header class="text-center">
+        <div class="banner">
+            <h2 class="my-5 font-weight-light">Umumiy Harajatlar Ro'yhati</h2>
+        </div>
+    </header>
+    <div class="row" style="margin-right: 15px;">
+        <div class="col-md-7 m-auto">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-outline-success btn-block">Xarajat qo'shish</button>
+            </form>
+            <table class="table mt-3 table-hover table-borderless">
+                <thead class="border-bottom border-primary">
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Sariflangan Pul Miqdori</th>
+                        <th>Sariflash vaqti</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="table-hover table-responsive-sm">
+                    {% for i in object_list %}
+                        <tr>
+                            <th>{{ forloop.counter }}</th>
+                            <td>{{ i.name }}</td>
+                            <td>{{ i.outlay }} so'm</td>
+                            <td>{{ i.spending_time }}</td>
+                            <td class="btn-group btn-group-sm"><a href="{% url 'List:Update_Outlay' pk=i.pk %}" class="btn btn-primary">Edit</a><a class="btn btn-danger" href="{% url 'List:Delete_Outlay' pk=i.pk %}">Delete</a></td>
+                        </tr>                      
+                    {% endfor %}
+                </tbody>
+                <tfoot class="border-top border-primary">
+                    {% for i in object_list %}
+                        {% if forloop.counter == 1 %}
+                            {% if i.total_outlay %}                                
+                                <tr>
+                                    <th colspan="2">Total</th>
+                                    <td colspan="3">Firma xisobidan <i class="text-danger"> {{ i.total_outlay }} so'm</i> xarajat qilingan</td>
+                                </tr>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+{% endblock content %}

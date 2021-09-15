@@ -1,0 +1,25 @@
+{% extends "index.html" %}
+{% block title %}
+    Home
+{% endblock title %}
+{% block content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item" ><a href="{% url 'List:Home' %}"><i class="fas fa-home"></i> Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Register</li>
+    </ol>
+</nav>
+    <div class="row" style="margin-right: 15px;">
+        <div class="col-md-6 m-auto">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td><a class="text-dark" href="{% url 'List:Sub_form' %}"><i class="fas fa-plus-circle"></i> Add Subjects</a></td>
+                        <td><a class="text-dark" href="{% url 'List:Tea_form' %}"><i class="fas fa-user-plus"></i> Add Coworkers</a></td>
+                        <td><a class="text-dark" href="{% url 'List:Stu_form' %}"><i class="fas fa-user-graduate"></i> Add Students</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content %}
