@@ -153,7 +153,7 @@ class StudentDelete(DeleteView):
     success_url = '/subject'
     template_name = 'delete/student_delete.html'
 
-#umumiy malumotlar
+# umumiy malumotlar
 
 
 def All_of_Them(request):
@@ -169,7 +169,7 @@ def All_of_Them(request):
     }
     return render(request, 'report_section/report_home.html', context)
 
-#chiqimlarni kosatish uchun
+# chiqimlarni kosatish uchun
 
 
 class Total_Outlies(CreateView):
@@ -200,7 +200,7 @@ class Total_OutlayDelete(DeleteView):
     success_url = '/outlay'
     template_name = 'delete/outlay_delete.html'
 
-#Hamma Talabalarni korsatish uchun
+# Hamma Talabalarni korsatish uchun
 
 
 class All_StudentList(ListView):
@@ -209,7 +209,7 @@ class All_StudentList(ListView):
     ordering = '-added_time'
     paginate_by = 5
 
-#Qidiruv tizimi uchun
+# Qidiruv tizimi uchun
 
 
 class SearchWorkerList(ListView):
@@ -222,28 +222,7 @@ class SearchWorkerList(ListView):
         object_list = Teacher.objects.filter(
             Q(first_name__icontains=query) | Q(address__icontains=query) | Q(
                 expirence__icontains=query) | Q(last_name__icontains=query)
-            )
-        return object_list
-
-
-class SearchStudentList(ListView):
-    model = Student
-    template_name = 'search/student_search.html'
-    ordering = 'teacher'
-
-    def get_queryset(self):
-        query = self.request.GET.get('S')
-        object_list = Student.objects.filter(
-            Q(first_name__icontains=query) | Q(last_name__icontains=query))
-        return object_list
-    ordering = 'first_name'
-
-    def get_queryset(self):
-        query = self.request.GET.get('W')
-        object_list = Teacher.objects.filter(
-            Q(first_name__icontains=query) | Q(address__icontains=query) | Q(
-                expirence__icontains=query) | Q(last_name__icontains=query)
-            )
+        )
         return object_list
 
 

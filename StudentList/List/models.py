@@ -53,8 +53,8 @@ class Subject(models.Model):
 
     def get_absolute_url(self):
         return reverse('List:Subjects', kwarg={self.id: 'id'})
-# Markazda ishlaydigan O'qituvchilarni royhatga olish uchun
 
+# Markazda ishlaydigan O'qituvchilarni royhatga olish uchun
 
 class Teacher(models.Model):
     first_name = models.CharField(max_length=length, blank=True, null=True)
